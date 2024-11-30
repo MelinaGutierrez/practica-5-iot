@@ -1,0 +1,43 @@
+{
+    "state": {
+        "desired": {
+            "actuators": {
+                "fan": 0,
+                "alarm": 0,
+                "motor": {
+                    "status": 1,
+                    "speed": 20
+                }
+            }
+        },
+        "reported": {
+            "sensors": {
+                "temperature": 45,
+                "humidity": 45,
+                "air_quality": 120.5,
+                "mq2": {
+                    "lpg": 150,
+                    "co": 1500,
+                    "smoke": 180.0
+                },
+                "air_quality_drop": false
+            },
+            "actuators": {
+                "fan": "off",
+                "alarm": "off",
+                "motor": {
+                    "status": "off",
+                    "speed": 0
+                }
+            },
+            "temperature": 35,
+            "humidity": 45,
+            "air_quality": 180,
+            "mq2": {
+                "lpg": 0.1,
+                "co": 0.03,
+                "smoke": 0.2
+            }
+        }
+    }
+}
