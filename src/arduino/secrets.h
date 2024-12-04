@@ -1,18 +1,90 @@
-// secrets.h
-#ifndef SECRETS_H
-#define SECRETS_H
+#include <pgmspace.h>
+ 
+#define SECRET
+#define THINGNAME "Env_Control_0001"                       
+ 
+const char WIFI_SSID[] = "wifimel";              
+const char WIFI_PASSWORD[] = "12345678";               
+const char AWS_IOT_ENDPOINT[] = "aea4fbhz5gq4c-ats.iot.us-east-2.amazonaws.com";   
+ 
+// Amazon Root CA 1
+static const char AWS_CERT_CA[] PROGMEM = R"EOF(
+-----BEGIN CERTIFICATE-----
+MIIDQTCCAimgAwIBAgITBmyfz5m/jAo54vB4ikPmljZbyjANBgkqhkiG9w0BAQsF
+ADA5MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRkwFwYDVQQDExBBbWF6
+b24gUm9vdCBDQSAxMB4XDTE1MDUyNjAwMDAwMFoXDTM4MDExNzAwMDAwMFowOTEL
+MAkGA1UEBhMCVVMxDzANBgNVBAoTBkFtYXpvbjEZMBcGA1UEAxMQQW1hem9uIFJv
+b3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALJ4gHHKeNXj
+ca9HgFB0fW7Y14h29Jlo91ghYPl0hAEvrAIthtOgQ3pOsqTQNroBvo3bSMgHFzZM
+9O6II8c+6zf1tRn4SWiw3te5djgdYZ6k/oI2peVKVuRF4fn9tBb6dNqcmzU5L/qw
+IFAGbHrQgLKm+a/sRxmPUDgH3KKHOVj4utWp+UhnMJbulHheb4mjUcAwhmahRWa6
+VOujw5H5SNz/0egwLX0tdHA114gk957EWW67c4cX8jJGKLhD+rcdqsq08p8kDi1L
+93FcXmn/6pUCyziKrlA4b9v7LWIbxcceVOF34GfID5yHI9Y/QCB/IIDEgEw+OyQm
+jgSubJrIqg0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMC
+AYYwHQYDVR0OBBYEFIQYzIU07LwMlJQuCFmcx7IQTgoIMA0GCSqGSIb3DQEBCwUA
+A4IBAQCY8jdaQZChGsV2USggNiMOruYou6r4lK5IpDB/G/wkjUu0yKGX9rbxenDI
+U5PMCCjjmCXPI6T53iHTfIUJrU6adTrCC2qJeHZERxhlbI1Bjjt/msv0tadQ1wUs
+N+gDS63pYaACbvXy8MWy7Vu33PqUXHeeE6V/Uq2V8viTO96LXFvKWlJbYK8U90vv
+o/ufQJVtMVT8QtPHRh8jrdkPSHCa2XV4cdFyQzR1bldZwgJcJmApzyMZFo6IQ6XU
+5MsI+yMRQ+hDKXJioaldXgjUkK642M4UwtBV8ob2xJNDd2ZhwLnoQdeXeGADbkpy
+rqXRfboQnoZsG4q5WTP468SQvvG5
+-----END CERTIFICATE-----
+)EOF";
+ 
+// Device Certificate                                              
+static const char AWS_CERT_CRT[] PROGMEM = R"KEY(
+-----BEGIN CERTIFICATE-----
+MIIDWjCCAkKgAwIBAgIVAMssORPCle0n+/P8wRrAQdflTnpOMA0GCSqGSIb3DQEB
+CwUAME0xSzBJBgNVBAsMQkFtYXpvbiBXZWIgU2VydmljZXMgTz1BbWF6b24uY29t
+IEluYy4gTD1TZWF0dGxlIFNUPVdhc2hpbmd0b24gQz1VUzAeFw0yNDExMjkxODI4
+MzhaFw00OTEyMzEyMzU5NTlaMB4xHDAaBgNVBAMME0FXUyBJb1QgQ2VydGlmaWNh
+dGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDgOVwGlLvezv8VgTsN
+j8Ck40kkZzilvIeBcPye0Xv8Acz3zayfSzGfUu/qHMYKLJ361HcWdV/fPXfLjbQK
+LczpFdkC7QJKn6LBiQxLKrotyXz4pRMm2Yp27pjA7RdRIqs9OiHcCYEUgly5Mcdw
+TdmZhlruTi3sXCptGaCFGQ3ZiwvqvfctpMozZIp3cMOHaRwC/LrI1Q5boyCY7vm0
+ItUAxE6Vxz8/euSdYWXJ3IJTDjtqqcOpQqjK9xqfoXm+6fJ6xnL/Sy/oGbJ5zLzW
+45Td3OWSg+GoBG2cOMH8rHdKHyAWbr7aqzMMbPpFPDNXpfbPt52F/LpYl1ilnfhi
+VwJ9AgMBAAGjYDBeMB8GA1UdIwQYMBaAFM7RfAv3CH3p2xrwQT7ZbF1rQQHlMB0G
+A1UdDgQWBBSsabvWHXYo3RQfCWrOz7BZMx/zfzAMBgNVHRMBAf8EAjAAMA4GA1Ud
+DwEB/wQEAwIHgDANBgkqhkiG9w0BAQsFAAOCAQEACHu15vYZHbSNpROimkfK9Pmj
+5+QXsosxsbgOYlsCmrcDD3mKUKP7ZdcDk1OPLcmbhVLcnTWLbjxVPwpZP+9/hDZ7
+2Uh0V0goHCrrYF44U+Ki41nXkdq08xOSab5M3eCTCFu4TjHtsITbQ2phcRNx7KZr
+wcJDOBIn90neFvMz2PO+w9NOIgBtSEOnyOlwPxg1jzQs+PT2g3uLbMu+5IzbBa4k
+/gVUY2wPAH0FjvWmo7uNmNS6wr6a0i48/q2sdxZX0WCxu1Ub9QXru4Xi1n8GPTvy
+Y2P57l7Wh5no7hhnf1AuxRM2u+RZo/j7VXnCEkr2CmWy/1RLtagLAMCuVhiJxw==
+-----END CERTIFICATE-----
 
-#define WIFI_SSID "tu_ssid"
-#define WIFI_PASSWORD "tu_contraseña_wifi"
+)KEY";
+ 
+// Device Private Key                                              
+static const char AWS_CERT_PRIVATE[] PROGMEM = R"KEY(
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpQIBAAKCAQEA4DlcBpS73s7/FYE7DY/ApONJJGc4pbyHgXD8ntF7/AHM982s
+n0sxn1Lv6hzGCiyd+tR3FnVf3z13y420Ci3M6RXZAu0CSp+iwYkMSyq6Lcl8+KUT
+JtmKdu6YwO0XUSKrPToh3AmBFIJcuTHHcE3ZmYZa7k4t7FwqbRmghRkN2YsL6r33
+LaTKM2SKd3DDh2kcAvy6yNUOW6MgmO75tCLVAMROlcc/P3rknWFlydyCUw47aqnD
+qUKoyvcan6F5vunyesZy/0sv6Bmyecy81uOU3dzlkoPhqARtnDjB/Kx3Sh8gFm6+
+2qszDGz6RTwzV6X2z7edhfy6WJdYpZ34YlcCfQIDAQABAoIBAQDIZ5vvqdnsf5gP
+0WxFZ7ln5lkGN1ezEjkOoTy4ekVVbQqUZPinex6D5y3VUhhTGaOtf15c7VVeAuNi
+RGmpO1xM66EFc2474kgmsGYTfMHgkJio52mhrIeMWx6eOIpBkzn3xFBlCP2cphNX
+1r0JjBszk5kMK0XyXkHxNxl4PHdbebYjeTJ94RhAYAxAjpMEv9vxN3QvZcw6cbS/
+95P+bS8vh9c6Xl9J40aLqzf/TfRzAzpfimdjlZ5QUbqFVcCdHCjdfWOkFwhpeS/o
+2TcB/RPndyPRWV7wpEcrWHrbVSyf9AcOYDG9Krjd2hoyBhOuoxjX2qfCee1+96rC
+xC49YsYBAoGBAPYj4RDc4NbmKF+vQe7QbHgLHwgTIENWgNc0gywDU52s1qlP9gJg
+lZHKNDpTFvmnwkj39DY6KuvzcRBMTK4fyyNw7ot6yN45d/2ZviDM36ZIJr/ThDtE
+PLmnt+xvDDYNQOADXqQvoZTzqGbJMdF7xkVJcTDJ4GU8DgYlceojykmBAoGBAOk0
+vCOJYLxjnWg/+meYkahAPlljCfh+YlAq/MWgi9EGdjFuwLtmHZLrA5T29kHDSZ2s
+2Jl7vsS/ksE1FQEagiCvRMxdvpTK9VnogBFDSjj+dVCR9K7mJU92VpRj8doC3Wgg
+xZ9Ir92UYdsYE/1lcIUTvHNqqx2doocmV4Cd7179AoGBAOpNUyRLLdhDNTGIUjnz
+ux02cO6tzitrf6/b8/WEoSbZ7Wk0jZjLufUSx06x44/5Sm9NYPHxwwPiM8Fw8Blc
+eHGfQeQSGH25tOf6Xss4Wrkdu40k2p3UIf4UkncFallVmmjjrEacdLKmkqptYPfp
+W95+v7nSocGcPjlJkbtxIFGBAoGBAONtW2Fos19l4ndtlV18a+hipqtzq6CcWHKI
+SbTN6iyyGYgB05Gud371FKws4GGn+t37V8zu4k9r6MnlY5OM74TCiNypO5hOClJh
+LKwpLHRCq9QkUzRSG+bPqIXUpmMPUi8fbrr1HxV/hKMvayc+yyns4mbIixI5zevx
+l3pGC9BdAoGAXh9Jsorams2KgQCIyP8mqauOnvXRXTaNANxDD8qIcQMaFtSQ8EH2
+FSHc4RP1PlnMABKu6mjUTDB563Nf9W7S/OEU0ztAZdTvKkpKnbuNoCL8loedYc1d
+kYtx72uJqYBVWTW2kTL0+1slFOfz9MjQwIfKMo+Ht+pWk+bXLWG67Ng=
+-----END RSA PRIVATE KEY-----
 
-// AWS IoT Configuración
-#define AWS_IOT_ENDPOINT "tu_endpoint.iot.us-east-1.amazonaws.com"
-#define MQTT_USER "tu_usuario"
-#define MQTT_PASSWORD "tu_contraseña"
 
-// Certificados para conectar al endpoint de AWS IoT (estos valores son solo ejemplos)
-#define AWS_CERT_CA "ruta_al_certificado_CA.pem"
-#define AWS_CERT_CRT "ruta_al_certificado_cliente.crt"
-#define AWS_CERT_PRIVATE "ruta_al_certificado_cliente_private.key"
-
-#endif
+)KEY";
